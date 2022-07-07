@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ByteBank.Funcionarios
 {
-    public class Supervisor : funcionarios
+    public class Supervisor : Funcionarios
     {
         public Supervisor (string nome, string profissao, int idade, string cpf, double salario) : base(nome, profissao, idade, cpf)
         {
@@ -21,7 +21,7 @@ namespace ByteBank.Funcionarios
         }
         public override double AumentarSal()
         {
-            Salario *= 0.2;
+            Salario *= 1.2;
             return Salario;
         }   
     }

@@ -22,7 +22,7 @@ namespace ByteBank.Funcionarios
         }
         public override double AumentarSal()
         {
-            Salario *= 0.3;
+            Salario *= 1.3;
             return Salario;
         }
     }

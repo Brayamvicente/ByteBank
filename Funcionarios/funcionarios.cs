@@ -1,4 +1,4 @@
-﻿using ByteBank.cliente;
+﻿using ByteBank;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace ByteBank.Funcionarios
 {
-    public abstract class funcionarios : pessoa
+    public abstract class Funcionarios : pessoa
     {
         public double Salario { get; protected set; }
         int totalDeFuncionarios = 0;
         public double salBon { get; private set; }
-        public funcionarios(string nome, string profissao, int idade, string cpf)
+        public Funcionarios(string nome, string profissao, int idade, string cpf)
         {
            this.Cadastrar(nome, idade, profissao, cpf);
             totalDeFuncionarios++;
             
         }
-        public funcionarios(Cliente cliente)
+        public Funcionarios(ContaCorrente cliente)
         {
             this.Cadastrar(cliente.nome, cliente.idade, cliente.profissao, cliente.cpf);
             totalDeFuncionarios++;
@@ -50,8 +50,8 @@ namespace ByteBank.Funcionarios
         
         public double AplicarBonificacao()
         {
-            salBon = Bonificacao() + Salario;
-            return salBon;
+            Salario = Bonificacao() + Salario;
+            return Salario;
         }
         public abstract double AumentarSal();
     }

@@ -8,27 +8,37 @@ namespace ByteBank
 {
     public class ContaCorrente : pessoa
     {
-        public int numconta;
-        public int numagencia;
+        private int numconta { get; }
+        public int numagencia { get; }
         private double _saldo = 100;
         public double saldo { get { return _saldo; } private set { } }
+        public ContaCorrente(int conta, int agencia)
+        {
+            if (conta <= 0)
+            {
+                throw new ArgumentException("Erro de argumento na criação de nova conta",nameof(conta));
+            }
+            if (agencia <= 0)
+            {
+                throw new ArgumentException("Erro de argumento na criação de nova conta", nameof(agencia));
+            }
+            numconta = conta;
+            numagencia = agencia;
+        }
 
-        
         public void SomarSaldo(double valor)
         {
             _saldo += valor;
         }
-        public bool DiminuSaldo(double valor)
+        public void DiminuSaldo(double valor)
         {
             if(_saldo >= valor)
             {
                 _saldo -= valor;                
-                return true;
             }
             else
             {
-                Console.WriteLine("Saldo insuficiente");
-                return false;
+                throw new ValueException();
             }
             
         }
@@ -37,14 +47,13 @@ namespace ByteBank
             if (_saldo >= valor)
             {
                 DiminuSaldo(valor);
-                SomarSaldo(valor);
+                contaDest.SomarSaldo(valor);
                 Console.WriteLine("Pix efetuado com sucesso, Consulte o saldo");
                 return true;
             }
             else
             {
-                Console.WriteLine("saldo insuficiente");
-                return false;
+                throw new ValueException();
             }
         }    
 
